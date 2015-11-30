@@ -1,4 +1,4 @@
-from VHbbAnalysis.Heppy.vhbbobj import ptRel
+from HighMassVHbbAnalysis.Heppy.vhbbobj import ptRel
 from PhysicsTools.HeppyCore.utils.deltar import deltaR,deltaPhi
 from PhysicsTools.Heppy.physicsobjects.PhysicsObject import PhysicsObject
 from PhysicsTools.Heppy.physicsobjects.PhysicsObjects import Jet

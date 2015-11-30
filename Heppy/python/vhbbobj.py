@@ -135,7 +135,7 @@ jetTypeVHbb = NTupleObjectType("jet",  baseObjectTypes = [ jetType ], variables 
 
 #add per-jet b-tag systematic weight
 from PhysicsTools.Heppy.physicsutils.BTagWeightCalculator import BTagWeightCalculator
-csvpath = os.environ['CMSSW_BASE']+"/src/VHbbAnalysis/Heppy/data/csv"
+csvpath = os.environ['CMSSW_BASE']+"/src/HighMassVHbbAnalysis/Heppy/data/csv"
 bweightcalc = BTagWeightCalculator(
     csvpath + "/csv_rwt_hf_IT_FlatSF_2015_07_27.root",
     csvpath + "/csv_rwt_lf_IT_FlatSF_2015_07_27.root"

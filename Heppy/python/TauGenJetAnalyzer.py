@@ -7,7 +7,7 @@ from PhysicsTools.Heppy.physicsobjects.PhysicsObjects import GenParticle
 from PhysicsTools.Heppy.physicsutils.genutils import *
 import PhysicsTools.HeppyCore.framework.config as cfg
 
-from VHbbAnalysis.Heppy.genTauDecayMode import genTauDecayMode
+from HighMassVHbbAnalysis.Heppy.genTauDecayMode import genTauDecayMode
         
 class TauGenJetAnalyzer( Analyzer ):
     """Determine generator level tau decay mode."""
