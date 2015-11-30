@@ -7,7 +7,7 @@ doPDFVars = False
 import ROOT
 from DataFormats.FWLite import *
 import PhysicsTools.HeppyCore.framework.config as cfg
-from VHbbAnalysis.Heppy.vhbbobj import *
+from HighMassHighMassVHbbAnalysis.Heppy.vhbbobj import *
 from PhysicsTools.HeppyCore.utils.deltar import deltaPhi
 from PhysicsTools.Heppy.analyzers.core.AutoFillTreeProducer  import * 
 
@@ -195,7 +195,7 @@ LHEAna = LHEAnalyzer.defaultConfig
 
 from PhysicsTools.Heppy.analyzers.gen.GeneratorAnalyzer import GeneratorAnalyzer 
 GenAna = GeneratorAnalyzer.defaultConfig
-from VHbbAnalysis.Heppy.VHGeneratorAnalyzer import GeneratorAnalyzer as  VHGeneratorAnalyzer
+from HighMassHighMassVHbbAnalysis.Heppy.VHGeneratorAnalyzer import GeneratorAnalyzer as  VHGeneratorAnalyzer
 VHGenAna = VHGeneratorAnalyzer.defaultConfig
 
 from PhysicsTools.Heppy.analyzers.objects.METAnalyzer import METAnalyzer
@@ -231,13 +231,13 @@ METNoHFAna.doMetNoPU = False
 from PhysicsTools.Heppy.analyzers.core.PileUpAnalyzer import PileUpAnalyzer
 PUAna = PileUpAnalyzer.defaultConfig
 
-from VHbbAnalysis.Heppy.VHbbAnalyzer import VHbbAnalyzer
+from HighMassHighMassVHbbAnalysis.Heppy.VHbbAnalyzer import VHbbAnalyzer
 JetAna.jetPt = 15
 JetAna.jetEta = 4.7
 JetAna.doQG=False
 JetAna.QGpath=os.environ['CMSSW_BASE']+"/src/PhysicsTools/Heppy/data/pdfQG_AK4chs_13TeV_v2b.root"
 JetAna.recalibrateJets=True
-JetAna.jecPath=os.environ['CMSSW_BASE']+"/src/VHbbAnalysis/Heppy/data/jec"
+JetAna.jecPath=os.environ['CMSSW_BASE']+"/src/HighMassHighMassVHbbAnalysis/Heppy/data/jec"
 JetAna.mcGT="74X_mcRun2_asymptotic_v2"
 JetAna.dataGT = "Summer15_25nsV6_DATA"
 JetAna.addJECShifts=True
@@ -271,24 +271,24 @@ VHbb = cfg.Analyzer(
     VBFblikelihood = {"weight":"TMVA_blikelihood_vbf_singlebtag_v13_id.xml", "name":"BDGT"}
 )
 
-from VHbbAnalysis.Heppy.TTHtoTauTauAnalyzer import TTHtoTauTauAnalyzer
+from HighMassHighMassVHbbAnalysis.Heppy.TTHtoTauTauAnalyzer import TTHtoTauTauAnalyzer
 TTHtoTauTau = cfg.Analyzer(
     verbose = False,
     class_object = TTHtoTauTauAnalyzer,
 )
-from VHbbAnalysis.Heppy.TTHtoTauTauGeneratorAnalyzer import TTHtoTauTauGeneratorAnalyzer
+from HighMassHighMassVHbbAnalysis.Heppy.TTHtoTauTauGeneratorAnalyzer import TTHtoTauTauGeneratorAnalyzer
 TTHtoTauTauGen = cfg.Analyzer(
     verbose = False,
     class_object = TTHtoTauTauGeneratorAnalyzer,
 )
 
-#from VHbbAnalysis.Heppy.HeppyShell import HeppyShell
+#from HighMassHighMassVHbbAnalysis.Heppy.HeppyShell import HeppyShell
 #sh = cfg.Analyzer( class_object=HeppyShell)
 
 from PhysicsTools.Heppy.analyzers.core.TriggerBitAnalyzer import TriggerBitAnalyzer
 
-from VHbbAnalysis.Heppy.TriggerTable import triggerTable
-from VHbbAnalysis.Heppy.TriggerTableData import triggerTable as triggerTableData
+from HighMassHighMassVHbbAnalysis.Heppy.TriggerTable import triggerTable
+from HighMassHighMassVHbbAnalysis.Heppy.TriggerTableData import triggerTable as triggerTableData
 
 TrigAna = cfg.Analyzer(
     verbose = False,
@@ -310,7 +310,7 @@ output_service = cfg.Service(
 from PhysicsTools.Heppy.analyzers.core.TriggerBitAnalyzer import TriggerBitAnalyzer
 FlagsAna = TriggerBitAnalyzer.defaultEventFlagsConfig
 
-from VHbbAnalysis.Heppy.hbheAnalyzer import *
+from HighMassHighMassVHbbAnalysis.Heppy.hbheAnalyzer import *
 hbheAna = hbheAnalyzer.defaultConfig
 
 

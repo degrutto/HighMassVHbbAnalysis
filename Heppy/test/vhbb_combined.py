@@ -6,9 +6,9 @@ from PhysicsTools.Heppy.utils.cmsswPreprocessor import CmsswPreprocessor
 # line will have no effect (as vhbb is already imported there)
 from vhbb import *
 
-from VHbbAnalysis.Heppy.AdditionalBTag import AdditionalBTag
-from VHbbAnalysis.Heppy.AdditionalBoost import AdditionalBoost
-from VHbbAnalysis.Heppy.GenHFHadronMatcher import GenHFHadronMatcher
+from HighMassVHbbAnalysis.Heppy.AdditionalBTag import AdditionalBTag
+from HighMassVHbbAnalysis.Heppy.AdditionalBoost import AdditionalBoost
+from HighMassVHbbAnalysis.Heppy.GenHFHadronMatcher import GenHFHadronMatcher
 
 
 # Add Boosted Information
@@ -17,7 +17,7 @@ boostana=cfg.Analyzer(
     class_object=AdditionalBoost,
 )
 boostana.GT = "Summer15_25nsV6_DATA" # we do L2L3 for MC and L2L3Res for data. Can therefor use data GT for both
-boostana.jecPath = os.environ['CMSSW_BASE']+"/src/VHbbAnalysis/Heppy/data/jec"
+boostana.jecPath = os.environ['CMSSW_BASE']+"/src/HighMassVHbbAnalysis/Heppy/data/jec"
 boostana.isMC = sample.isMC
 boostana.skip_ca15 = False
 sequence.insert(sequence.index(VHbb),boostana)
@@ -106,7 +106,7 @@ sequence.insert(sequence.index(VHbb),btagana)
 
 # Add Information on generator level hadronic tau decays
 if sample.isMC:   
-    from VHbbAnalysis.Heppy.TauGenJetAnalyzer import TauGenJetAnalyzer
+    from HighMassVHbbAnalysis.Heppy.TauGenJetAnalyzer import TauGenJetAnalyzer
     TauGenJet = cfg.Analyzer(
         verbose = False,
         class_object = TauGenJetAnalyzer,
