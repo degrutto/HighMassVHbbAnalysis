@@ -88,8 +88,9 @@ class JetRegressionAK08 :
 
 
             cal_jet = Jet(closest_cal_fj_and_dr[0])
-
-            
+            # Need to do a deep-copy. Otherwise the original jet will be modified                                                                                                                   
+            reg_groomed_fj = PhysicsObject(closest_cal_fj_and_dr[0]).__copy__()
+            print 'after deep copy '            
 #        for j in event.FatjetAK08pruned:
 
             self.FatjetAK08ungroomed_pt[0] = ung_fj.pt()
@@ -105,9 +106,8 @@ class JetRegressionAK08 :
             self.FatjetAK08ungroomed_SV_EnergyRatio_1[0] = ung_fj.SV_EnergyRatio_1
             self.FatjetAK08ungroomed_PFLepton_ptrel[0] = ung_fj.PFLepton_ptrel
             self.FatjetAK08ungroomed_nSL[0] = ung_fj.nSL
-           
-             # Need to do a deep-copy. Otherwise the original jet will be modified                                                                                                                  
-            reg_groomed_fj = PhysicsObject(cal_jet).__copy__()
+            print 'ung_fj.nSL ', ung_fj.nSL
+
             reg_groomed_fj.scaleEnergy(self.reader.EvaluateRegression(self.name)[0])
 
 
