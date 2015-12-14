@@ -155,6 +155,8 @@ class GeneratorAnalyzer( Analyzer ):
         event.genwzquarks = []
         event.gentopquarks  = []
         event.genallstatus2bhadrons = [ p for p in event.genParticles if p.status() ==2 and self.hasBottom(p.pdgId()) ]
+#        event.genallstatus2bhadronsv2 = [ p for p in event.genParticles if p.status() ==2 and self.hasBottom(p.pdgId())  and p.numberOfDaughters() > 0 and not self.hasBottom(p.daughter(0).pdgId())]
+
         event.genallcquarks = [ p for p in event.genParticles if abs(p.pdgId()) == 4 and ( p.numberOfDaughters() == 0 or abs(p.daughter(0).pdgId()) != 4) ]
 
 		# aggiunti da me

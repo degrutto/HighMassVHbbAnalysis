@@ -344,11 +344,11 @@ class AdditionalBoost( Analyzer ):
                                                                "edm::AssociationVector<edm::RefToBaseProd<reco::Jet>,vector<float>,edm::RefToBase<reco::Jet>,unsigned int,edm::helper::AssociationIdenticalKeyReference>")
 
 
-            self.regressionsAK08={}
-            print 'Initialize regression AK08'
-            regressionAK08 = JetRegressionAK08('regAK08.weights.xml', 'Jet0RegressionAK08')
+        self.regressionsAK08={}
+        print 'Initialize regression AK08'
+        regressionAK08 = JetRegressionAK08('regAK08.weights.xml', 'Jet0RegressionAK08')
 #/afs/cern.ch/user/d/degrutto/scratch3/VHbbRun2/CMSSW_7_4_15/src/run2_boostedZH_161115/weights/TMVARegression_BDTG.weights.xml', 'Jet0RegressionAK08')           
-            self.regressionsAK08[0] = regressionAK08  
+        self.regressionsAK08[0] = regressionAK08  
 
         
 
@@ -487,8 +487,11 @@ class AdditionalBoost( Analyzer ):
         # Groomed Uncalibrated Fatjets
         ########
 
-        for fj_name in ['ak08pruned', 'ca15trimmed', 'ca15softdrop', 'ca15pruned']:            
-                setattr(event, fj_name, map(PhysicsObject, self.handles[fj_name].product()))
+        for fj_name in ['ak08pruned', 'ca15trimmed', 'ca15softdrop', 'ca15pruned']:           
+            if self.skip_ca15 and ("ca15" in fj_name):
+                continue
+            
+            setattr(event, fj_name, map(PhysicsObject, self.handles[fj_name].product()))
 
 
         ######## 
@@ -538,7 +541,7 @@ class AdditionalBoost( Analyzer ):
         ######## 
         # Subjets 
         ########
-
+        
         for fj_name in ['ak08pruned','ca15pruned']:
 
             if self.skip_ca15 and ("ca15" in fj_name):

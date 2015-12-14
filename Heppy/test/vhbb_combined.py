@@ -19,19 +19,25 @@ boostana=cfg.Analyzer(
 boostana.GT = "Summer15_25nsV6_DATA" # we do L2L3 for MC and L2L3Res for data. Can therefor use data GT for both
 boostana.jecPath = os.environ['CMSSW_BASE']+"/src/HighMassVHbbAnalysis/Heppy/data/jec"
 boostana.isMC = sample.isMC
-boostana.skip_ca15 = False
-sequence.insert(sequence.index(VHbb),boostana)
+boostana.skip_ca15 = True
+sequence.insert(sequence.index(HighMassVHbb),boostana)
 
 
 genhfana=cfg.Analyzer(
     verbose=False,
     class_object=GenHFHadronMatcher,
 )
-sequence.insert(sequence.index(VHbb),genhfana)
+sequence.insert(sequence.index(HighMassVHbb),genhfana)
 
 
 treeProducer.collections["ak08"] = NTupleCollection("FatjetAK08ungroomed",  ak8FatjetType,  10,
                                                     help = "AK, R=0.8, pT > 200 GeV, no grooming, calibrated")
+
+
+#treeProducer.collections["cleanAK08JetsAll"] = NTupleCollection("FatjetCleanAK08ungroomed",  ak8FatjetType,  10,
+#                                                  help = "AK, R=0.8, pT > 200 GeV, no grooming, calibrated")
+
+
 
 treeProducer.collections["ak08pruned"] = NTupleCollection("FatjetAK08pruned",
                                                             fourVectorType,
@@ -102,7 +108,7 @@ btagana=cfg.Analyzer(
     verbose=False,
     class_object=AdditionalBTag,
 )
-sequence.insert(sequence.index(VHbb),btagana)
+sequence.insert(sequence.index(HighMassVHbb),btagana)
 
 # Add Information on generator level hadronic tau decays
 if sample.isMC:   
@@ -111,7 +117,7 @@ if sample.isMC:
         verbose = False,
         class_object = TauGenJetAnalyzer,
     )
-    sequence.insert(sequence.index(VHbb),TauGenJet)
+    sequence.insert(sequence.index(HighMassVHbb),TauGenJet)
 
     treeProducer.collections["tauGenJets"] = NTupleCollection("GenHadTaus", genTauJetType, 15, help="Generator level hadronic tau decays")
 

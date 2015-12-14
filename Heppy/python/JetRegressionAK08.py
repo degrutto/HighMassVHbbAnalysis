@@ -88,17 +88,24 @@ class JetRegressionAK08 :
 
 
             cal_jet = Jet(closest_cal_fj_and_dr[0])
+
+            # now check the AK08 jet is not a lepton  
+#            if len(getattr(event, "selectedLeptons")):
+#                closest_pr_lep_and_dr = sorted( [(lep, deltaR2(cal_jet,lep)) for lep in getattr(event, "vLeptons")],  key=lambda x:x[1])[0]
+#            if closest_pr_lep_and_dr[1] < (0.4 * 0.4):
+#              print "WARNING: No groomed fatjet is overlapping with a vLepton. Skipping"
+#              continue
+
             # Need to do a deep-copy. Otherwise the original jet will be modified                                                                                                                   
             reg_groomed_fj = PhysicsObject(closest_cal_fj_and_dr[0]).__copy__()
-            print 'after deep copy '            
 #        for j in event.FatjetAK08pruned:
 
             self.FatjetAK08ungroomed_pt[0] = ung_fj.pt()
-            print 'ung_fj.pt() ', ung_fj.pt()
+#            print 'ung_fj.pt() ', ung_fj.pt()
             self.FatjetAK08pruned_pt[0] = pr_jet.pt()
-            print 'pr_jet.pt() ',  pr_jet.pt()
+#            print 'pr_jet.pt() ',  pr_jet.pt()
             self.FatjetAK08prunedCal_pt[0] = cal_jet.pt()
-            print 'cal_jet.pt() ', cal_jet.pt()
+#            print 'cal_jet.pt() ', cal_jet.pt()
             self.FatjetAK08prunedCal_eta[0] = cal_jet.eta()
             self.FatjetAK08ungroomed_vertexNTracks[0] = ung_fj.vertexNTracks
             self.FatjetAK08ungroomed_SV_mass_0[0] = ung_fj.SV_mass_0
@@ -106,13 +113,13 @@ class JetRegressionAK08 :
             self.FatjetAK08ungroomed_SV_EnergyRatio_1[0] = ung_fj.SV_EnergyRatio_1
             self.FatjetAK08ungroomed_PFLepton_ptrel[0] = ung_fj.PFLepton_ptrel
             self.FatjetAK08ungroomed_nSL[0] = ung_fj.nSL
-            print 'ung_fj.nSL ', ung_fj.nSL
+#            print 'ung_fj.nSL ', ung_fj.nSL
 
             reg_groomed_fj.scaleEnergy(self.reader.EvaluateRegression(self.name)[0])
 
 
             reg_fj.append(reg_groomed_fj)
-            print 'reg_groomed_fj.pt() ', reg_groomed_fj.pt()
+#            print 'reg_groomed_fj.pt() ', reg_groomed_fj.pt()
   
         
         setattr(event, 'ak08prunedreg',  reg_fj )
