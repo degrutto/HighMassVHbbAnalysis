@@ -1,0 +1,171 @@
+here
+DEBUG 2015-12-01 17:58:39,565: 	 Executing command: 'submit'
+DEBUG 2015-12-01 17:58:39,565: 	 Found CRAB cache file /afs/cern.ch/user/d/degrutto/.crab3
+DEBUG 2015-12-01 17:58:39,581: 	 Checking credentials
+DEBUG 2015-12-01 17:58:39,581: 	 Found proxy file /tmp/x509up_u24426
+DEBUG 2015-12-01 17:58:39,582: 	 Getting proxy life time left
+DEBUG 2015-12-01 17:58:40,085: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u24426 -timeleft
+ output : 43196
+
+ error: 
+ retcode : 0
+DEBUG 2015-12-01 17:58:40,594: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u24426 -actimeleft
+ output : 43196
+
+ error: 
+ retcode : 0
+DEBUG 2015-12-01 17:58:40,594: 	 Proxy valid for 11:59:56 hours
+INFO 2015-12-01 17:58:40,595: 	 Will use CRAB configuration file heppy_crab_config_env.py
+DEBUG 2015-12-01 17:58:40,595: 	 Loading CRAB configuration file.
+DEBUG 2015-12-01 17:58:40,865: 	 Will use CRAB Analysis plugin (i.e. will run an analysis job type).
+DEBUG 2015-12-01 17:58:40,986: 	 Executing : 
+ command : openssl x509 -in ~/.globus/usercert.pem -subject -noout
+ output : subject= /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=degrutto/CN=669401/CN=Michele De Gruttola
+
+ error: WARNING: can't open config file: /build/dmwmbld/srv/state/dmwmbld/builds/comp_gcc481/w/tmp/BUILDROOT/ef35842be28ecca6d10195ea8182a5ac/build/dmwmbld/srv/state/dmwmbld/builds/comp_gcc481/w/slc6_amd64_gcc481/external/openssl/1.0.1p/ssl/openssl.cnf
+
+ retcode : 0
+DEBUG 2015-12-01 17:58:40,986: 	 Checking credentials
+DEBUG 2015-12-01 17:58:40,986: 	 Found proxy file /tmp/x509up_u24426
+DEBUG 2015-12-01 17:58:40,986: 	 Getting proxy life time left
+DEBUG 2015-12-01 17:58:41,495: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u24426 -timeleft
+ output : 43195
+
+ error: 
+ retcode : 0
+DEBUG 2015-12-01 17:58:41,899: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u24426 -actimeleft
+ output : 43195
+
+ error: 
+ retcode : 0
+DEBUG 2015-12-01 17:58:41,899: 	 Proxy valid for 11:59:55 hours
+DEBUG 2015-12-01 17:58:42,404: 	 Executing : 
+ command : env X509_USER_PROXY=/tmp/x509up_u24426 voms-proxy-info -fqan
+ output : /cms/Role=NULL/Capability=NULL
+/cms/itcms/Role=NULL/Capability=NULL
+
+ error: 
+ retcode : 0
+DEBUG 2015-12-01 17:58:42,842: 	 Registering user credentials for server /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119).cern.ch
+DEBUG 2015-12-01 17:58:42,957: 	 Executing : 
+ command : openssl x509 -in ~/.globus/usercert.pem -subject -noout
+ output : subject= /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=degrutto/CN=669401/CN=Michele De Gruttola
+
+ error: WARNING: can't open config file: /build/dmwmbld/srv/state/dmwmbld/builds/comp_gcc481/w/tmp/BUILDROOT/ef35842be28ecca6d10195ea8182a5ac/build/dmwmbld/srv/state/dmwmbld/builds/comp_gcc481/w/slc6_amd64_gcc481/external/openssl/1.0.1p/ssl/openssl.cnf
+
+ retcode : 0
+DEBUG 2015-12-01 17:58:42,957: 	 Getting myproxy life time left for myproxy.cern.ch
+DEBUG 2015-12-01 17:58:42,957: 	 Calculating hash of /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=degrutto/CN=669401/CN=Michele De Gruttola_cmsweb.cern.ch for credential name
+DEBUG 2015-12-01 17:58:43,362: 	 Executing : 
+ command : myproxy-info -l 087baf305a3c87be9646cc00e398b089c4dbac6f -s myproxy.cern.ch
+ output : username: 087baf305a3c87be9646cc00e398b089c4dbac6f
+owner: /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=degrutto/CN=669401/CN=Michele De Gruttola
+  renewal policy: /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119).cern.ch
+  trusted retrieval policy: /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119).cern.ch
+  timeleft: 718:42:23  (29.9 days)
+
+ error: 
+ retcode : 0
+DEBUG 2015-12-01 17:58:43,363: 	 Myproxy is valid: 2587343
+DEBUG 2015-12-01 17:58:43,363: 	 Command use: submit
+DEBUG 2015-12-01 17:58:43,363: 	 Options use: ['-c', 'heppy_crab_config_env.py']
+DEBUG 2015-12-01 17:58:43,730: 	 CRABClient version: 3.3.1511
+DEBUG 2015-12-01 17:58:43,730: 	 Instance is prod
+DEBUG 2015-12-01 17:58:43,730: 	 Server base url is cmsweb.cern.ch
+DEBUG 2015-12-01 17:58:43,730: 	 Command url /crabserver/prod/workflow
+DEBUG 2015-12-01 17:58:43,730: 	 Started submission
+DEBUG 2015-12-01 17:58:43,730: 	 Working on /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/src/HighMassVHbbAnalysis/Heppy/test/crab/crab_projects_D14_003/crab_HBB_HEPPY_D14_003_WprimeToWhToWlephbb_narrow_M-1000_13TeV-madgraph__RunIISpring15MiniAODv2-74X_mcRun2_asymptotic_v2-v1
+DEBUG 2015-12-01 17:58:44,191: 	 Loading required information from the environment
+DEBUG 2015-12-01 17:58:44,191: 	 Found CMSSW_7_4_15 for slc6_amd64_gcc491 with base /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15
+DEBUG 2015-12-01 17:58:44,226: 	 UNIQUE NAME: tarUUID e4b14c5d-8420-4abc-8540-0cd245e1578b 
+DEBUG 2015-12-01 17:58:44,226: 	 self.config: from WMCore.Configuration import Configuration
+config = Configuration()
+config.section_('General')
+config.General.transferLogs = True
+config.General.workArea = 'crab_projects_D14_003'
+config.General.requestName = 'HBB_HEPPY_D14_003_WprimeToWhToWlephbb_narrow_M-1000_13TeV-madgraph__RunIISpring15MiniAODv2-74X_mcRun2_asymptotic_v2-v1'
+config.section_('JobType')
+config.JobType.psetName = 'heppy_crab_fake_pset.py'
+config.JobType.pluginName = 'Analysis'
+config.JobType.inputFiles = ['heppy_config.py', 'heppy_crab_script.py', 'python.tar.gz', 'MVAJetTags_620SLHCX_Phase1And2Upgrade.db', 'combined_cmssw.py', '../vhbb.py', '../vhbb_combined.py', 'TMVAClassification_BDT.weights.xml', 'puData.root', 'puMC.root', 'json.txt', '../Zll-spring15.weights.xml', '../Wln-spring15.weights.xml', '../Znn-spring15.weights.xml', '../VBF-spring15.weights.xml', '../TMVA_blikelihood_vbf_singlebtag_v13_id.xml', '../regAK08.weights.xml']
+config.JobType.scriptExe = 'heppy_crab_script.sh'
+config.section_('Data')
+config.Data.inputDataset = '/WprimeToWhToWlephbb_narrow_M-1000_13TeV-madgraph/RunIISpring15MiniAODv2-74X_mcRun2_asymptotic_v2-v1/MINIAODSIM'
+config.Data.outputDatasetTag = 'HBB_HEPPY_D14_WprimeToWhToWlephbb_narrow_M-1000_13TeV-madgraph__RunIISpring15MiniAODv2-74X_mcRun2_asymptotic_v2-v1'
+config.Data.totalUnits = 4
+config.Data.unitsPerJob = 2
+config.Data.inputDBS = 'global'
+config.Data.splitting = 'FileBased'
+config.Data.outLFNDirBase = '/store/group/cmst3/user/degrutto/WprimeHBBHeppyD14_TEST/'
+config.Data.publication = True
+config.section_('Site')
+config.Site.whitelist = ['T2_CH_CERN']
+config.Site.storageSite = 'T2_CH_CERN'
+
+DEBUG 2015-12-01 17:58:44,226: 	 self.config.JobType.psetName: heppy_crab_fake_pset.py
+INFO 2015-12-01 17:58:44,227: 	 Importing CMSSW configuration heppy_crab_fake_pset.py
+INFO 2015-12-01 17:58:44,294: 	 Finished importing CMSSW configuration heppy_crab_fake_pset.py
+DEBUG 2015-12-01 17:58:44,295: 	 Writing CMSSW configuration to /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/src/HighMassVHbbAnalysis/Heppy/test/crab/crab_projects_D14_003/crab_HBB_HEPPY_D14_003_WprimeToWhToWlephbb_narrow_M-1000_13TeV-madgraph__RunIISpring15MiniAODv2-74X_mcRun2_asymptotic_v2-v1/inputs/PSet.py
+DEBUG 2015-12-01 17:58:44,302: 	 The following EDM output files will be collected: ['tree.root']
+DEBUG 2015-12-01 17:58:44,302: 	 The following TFile output files will be collected: []
+DEBUG 2015-12-01 17:58:44,302: 	 The following user output files will be collected: []
+DEBUG 2015-12-01 17:58:44,302: 	 Loading required information from the environment
+DEBUG 2015-12-01 17:58:44,302: 	 Found CMSSW_7_4_15 for slc6_amd64_gcc491 with base /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15
+DEBUG 2015-12-01 17:58:44,302: 	 Making tarball in /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/src/HighMassVHbbAnalysis/Heppy/test/crab/crab_projects_D14_003/crab_HBB_HEPPY_D14_003_WprimeToWhToWlephbb_narrow_M-1000_13TeV-madgraph__RunIISpring15MiniAODv2-74X_mcRun2_asymptotic_v2-v1/inputs/e4b14c5d-8420-4abc-8540-0cd245e1578bdefault.tgz
+DEBUG 2015-12-01 17:58:44,303: 	 Checking directory /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/lib
+DEBUG 2015-12-01 17:58:44,303: 	 Adding directory /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/lib to tarball
+DEBUG 2015-12-01 17:58:49,365: 	 Checking directory /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/biglib
+DEBUG 2015-12-01 17:58:49,366: 	 Adding directory /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/biglib to tarball
+DEBUG 2015-12-01 17:58:49,372: 	 Checking directory /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/module
+DEBUG 2015-12-01 17:58:49,776: 	 Adding data directory /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/src/DataFormats/JetReco/interface to tarball
+DEBUG 2015-12-01 17:58:49,830: 	 Adding data directory /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/src/PhysicsTools/Heppy/data to tarball
+DEBUG 2015-12-01 17:58:50,232: 	 Adding data directory /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/src/PhysicsTools/Heppy/interface to tarball
+DEBUG 2015-12-01 17:58:50,307: 	 Adding data directory /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/src/PhysicsTools/JetMCAlgos/interface to tarball
+DEBUG 2015-12-01 17:58:50,335: 	 Adding data directory /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/src/PhysicsTools/PatAlgos/interface to tarball
+DEBUG 2015-12-01 17:58:50,414: 	 Adding data directory /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/src/PhysicsTools/PatUtils/data to tarball
+DEBUG 2015-12-01 17:58:50,714: 	 Adding data directory /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/src/PhysicsTools/PatUtils/interface to tarball
+DEBUG 2015-12-01 17:58:50,757: 	 Adding data directory /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/src/RecoBTag/SecondaryVertex/interface to tarball
+DEBUG 2015-12-01 17:58:50,782: 	 Adding data directory /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/src/RecoBTag/SecondaryVertex/data to tarball
+DEBUG 2015-12-01 17:58:50,918: 	 Adding data directory /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/src/RecoBTag/SoftLepton/interface to tarball
+DEBUG 2015-12-01 17:58:50,958: 	 Adding data directory /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/src/RecoBTag/ImpactParameter/interface to tarball
+DEBUG 2015-12-01 17:58:51,015: 	 Adding data directory /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/src/RecoBTau/JetTagComputer/interface to tarball
+DEBUG 2015-12-01 17:58:51,077: 	 Adding data directory /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/src/RecoJets/JetAlgorithms/interface to tarball
+DEBUG 2015-12-01 17:58:51,121: 	 Adding data directory /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/src/RecoJets/JetProducers/data to tarball
+DEBUG 2015-12-01 17:58:51,157: 	 Adding data directory /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/src/RecoJets/JetProducers/interface to tarball
+DEBUG 2015-12-01 17:58:51,221: 	 Adding data directory /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/src/VHbbAnalysis/Heppy/data to tarball
+DEBUG 2015-12-01 17:58:54,121: 	 Adding data directory /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/src/VHbbAnalysis/Heppy/interface to tarball
+DEBUG 2015-12-01 17:58:54,204: 	 Adding data directory /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/src/DQMOffline/RecoB/interface to tarball
+DEBUG 2015-12-01 17:58:54,298: 	 Adding data directory /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/src/HighMassVHbbAnalysis/Heppy/data to tarball
+DEBUG 2015-12-01 17:58:56,845: 	 Adding data directory /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/src/HighMassVHbbAnalysis/Heppy/interface to tarball
+DEBUG 2015-12-01 17:58:56,950: 	 Adding file heppy_config.py to tarball
+DEBUG 2015-12-01 17:58:56,951: 	 Adding file heppy_crab_script.py to tarball
+DEBUG 2015-12-01 17:58:56,952: 	 Adding file python.tar.gz to tarball
+DEBUG 2015-12-01 17:58:56,998: 	 Adding file MVAJetTags_620SLHCX_Phase1And2Upgrade.db to tarball
+DEBUG 2015-12-01 17:58:57,422: 	 Adding file combined_cmssw.py to tarball
+DEBUG 2015-12-01 17:58:57,425: 	 Adding file ../vhbb.py to tarball
+DEBUG 2015-12-01 17:58:57,428: 	 Adding file ../vhbb_combined.py to tarball
+DEBUG 2015-12-01 17:58:57,429: 	 Adding file TMVAClassification_BDT.weights.xml to tarball
+DEBUG 2015-12-01 17:58:57,476: 	 Adding file puData.root to tarball
+DEBUG 2015-12-01 17:58:57,477: 	 Adding file puMC.root to tarball
+DEBUG 2015-12-01 17:58:57,478: 	 Adding file json.txt to tarball
+DEBUG 2015-12-01 17:58:57,479: 	 Adding file ../Zll-spring15.weights.xml to tarball
+DEBUG 2015-12-01 17:58:57,518: 	 Adding file ../Wln-spring15.weights.xml to tarball
+DEBUG 2015-12-01 17:58:57,558: 	 Adding file ../Znn-spring15.weights.xml to tarball
+DEBUG 2015-12-01 17:58:57,597: 	 Adding file ../VBF-spring15.weights.xml to tarball
+DEBUG 2015-12-01 17:58:57,636: 	 Adding file ../TMVA_blikelihood_vbf_singlebtag_v13_id.xml to tarball
+DEBUG 2015-12-01 17:58:57,661: 	 Adding file ../regAK08.weights.xml to tarball
+DEBUG 2015-12-01 17:58:59,963: 	 Uploading archive /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/src/HighMassVHbbAnalysis/Heppy/test/crab/crab_projects_D14_003/crab_HBB_HEPPY_D14_003_WprimeToWhToWlephbb_narrow_M-1000_13TeV-madgraph__RunIISpring15MiniAODv2-74X_mcRun2_asymptotic_v2-v1/inputs/e4b14c5d-8420-4abc-8540-0cd245e1578bdefault.tgz to the CRAB cache. Using URI https://cmsweb.cern.ch/crabcache
+DEBUG 2015-12-01 17:59:11,215: 	 Result uploading input files: d53f1dea3f7ac44467fc6acd48005482e50e702d5c40c2f49713fb0aaf5bace6.tar.gz 
+INFO 2015-12-01 17:59:11,215: 	 Sending the request to the server
+DEBUG 2015-12-01 17:59:11,215: 	 Submitting {'maxjobruntime': 1250, 'adduserfiles': ['heppy_config.py', 'heppy_crab_script.py', 'python.tar.gz', 'MVAJetTags_620SLHCX_Phase1And2Upgrade.db', 'combined_cmssw.py', 'vhbb.py', 'vhbb_combined.py', 'TMVAClassification_BDT.weights.xml', 'puData.root', 'puMC.root', 'json.txt', 'Zll-spring15.weights.xml', 'Wln-spring15.weights.xml', 'Znn-spring15.weights.xml', 'VBF-spring15.weights.xml', 'TMVA_blikelihood_vbf_singlebtag_v13_id.xml', 'regAK08.weights.xml'], 'lfn': '/store/group/cmst3/user/degrutto/WprimeHBBHeppyD14_TEST/', 'savelogsflag': 1, 'useparent': 0, 'scriptexe': 'heppy_crab_script.sh', 'asyncdest': 'T2_CH_CERN', 'algoargs': 2, 'cachefilename': 'd53f1dea3f7ac44467fc6acd48005482e50e702d5c40c2f49713fb0aaf5bace6.tar.gz', 'numcores': 1, 'addoutputfiles': [], 'generator': 'pythia', 'maxmemory': 2000, 'publishdbsurl': 'https://cmsweb.cern.ch/dbs/prod/phys03/DBSWriter', 'priority': 10, 'jobsw': 'CMSSW_7_4_15', 'edmoutfiles': ['tree.root'], 'userfiles': [], 'primarydataset': '', 'inputdata': '/WprimeToWhToWlephbb_narrow_M-1000_13TeV-madgraph/RunIISpring15MiniAODv2-74X_mcRun2_asymptotic_v2-v1/MINIAODSIM', 'ignorelocality': 0, 'dryrun': 0, 'workflow': 'crab_HBB_HEPPY_D14_003_WprimeToWhToWlephbb_narrow_M-1000_13TeV-madgraph__RunIISpring15MiniAODv2-74X_mcRun2_asymptotic_v2-v1', 'sitewhitelist': ['T2_CH_CERN'], 'nonprodsw': 0, 'tfileoutfiles': [], 'oneEventMode': 0, 'cacheurl': 'https://cmsweb.cern.ch/crabcache', 'saveoutput': 1, 'publication': 1, 'jobarch': 'slc6_amd64_gcc491', 'totalunits': 4, 'splitalgo': 'FileBased', 'nonvaliddata': 0, 'dbsurl': 'https://cmsweb.cern.ch/dbs/prod/global/DBSReader', 'publishgroupname': 0, 'jobtype': 'Analysis', 'publishname2': 'HBB_HEPPY_D14_WprimeToWhToWlephbb_narrow_M-1000_13TeV-madgraph__RunIISpring15MiniAODv2-74X_mcRun2_asymptotic_v2-v1'} 
+DEBUG 2015-12-01 17:59:11,216: 	 Encoded submit request: maxjobruntime=1250&lfn=%2Fstore%2Fgroup%2Fcmst3%2Fuser%2Fdegrutto%2FWprimeHBBHeppyD14_TEST%2F&savelogsflag=1&useparent=0&scriptexe=heppy_crab_script.sh&asyncdest=T2_CH_CERN&algoargs=2&cachefilename=d53f1dea3f7ac44467fc6acd48005482e50e702d5c40c2f49713fb0aaf5bace6.tar.gz&numcores=1&generator=pythia&maxmemory=2000&publishdbsurl=https%3A%2F%2Fcmsweb.cern.ch%2Fdbs%2Fprod%2Fphys03%2FDBSWriter&priority=10&jobsw=CMSSW_7_4_15&primarydataset=&inputdata=%2FWprimeToWhToWlephbb_narrow_M-1000_13TeV-madgraph%2FRunIISpring15MiniAODv2-74X_mcRun2_asymptotic_v2-v1%2FMINIAODSIM&ignorelocality=0&dryrun=0&workflow=crab_HBB_HEPPY_D14_003_WprimeToWhToWlephbb_narrow_M-1000_13TeV-madgraph__RunIISpring15MiniAODv2-74X_mcRun2_asymptotic_v2-v1&nonprodsw=0&oneEventMode=0&cacheurl=https%3A%2F%2Fcmsweb.cern.ch%2Fcrabcache&saveoutput=1&publication=1&jobarch=slc6_amd64_gcc491&totalunits=4&splitalgo=FileBased&nonvaliddata=0&dbsurl=https%3A%2F%2Fcmsweb.cern.ch%2Fdbs%2Fprod%2Fglobal%2FDBSReader&publishgroupname=0&jobtype=Analysis&publishname2=HBB_HEPPY_D14_WprimeToWhToWlephbb_narrow_M-1000_13TeV-madgraph__RunIISpring15MiniAODv2-74X_mcRun2_asymptotic_v2-v1&adduserfiles=heppy_config.py&adduserfiles=heppy_crab_script.py&adduserfiles=python.tar.gz&adduserfiles=MVAJetTags_620SLHCX_Phase1And2Upgrade.db&adduserfiles=combined_cmssw.py&adduserfiles=vhbb.py&adduserfiles=vhbb_combined.py&adduserfiles=TMVAClassification_BDT.weights.xml&adduserfiles=puData.root&adduserfiles=puMC.root&adduserfiles=json.txt&adduserfiles=Zll-spring15.weights.xml&adduserfiles=Wln-spring15.weights.xml&adduserfiles=Znn-spring15.weights.xml&adduserfiles=VBF-spring15.weights.xml&adduserfiles=TMVA_blikelihood_vbf_singlebtag_v13_id.xml&adduserfiles=regAK08.weights.xml&sitewhitelist=T2_CH_CERN&edmoutfiles=tree.root
+DEBUG 2015-12-01 17:59:12,353: 	 Result: {'result': [{'RequestName': '151201_165911:degrutto_crab_HBB_HEPPY_D14_003_WprimeToWhToWlephbb_narrow_M-1000_13TeV-madgraph__RunIISpring15MiniAODv2-74X_mcRun2_asymptotic_v2-v1'}]}
+INFO 2015-12-01 17:59:12,364: 	 Success: Your task has been delivered to the CRAB3 server.
+INFO 2015-12-01 17:59:12,364: 	 Task name: 151201_165911:degrutto_crab_HBB_HEPPY_D14_003_WprimeToWhToWlephbb_narrow_M-1000_13TeV-madgraph__RunIISpring15MiniAODv2-74X_mcRun2_asymptotic_v2-v1
+INFO 2015-12-01 17:59:12,365: 	 Please use 'crab status' to check how the submission process proceeds.
+DEBUG 2015-12-01 17:59:12,365: 	 About to return
+INFO 2015-12-01 17:59:12,375: 	 Log file is /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/src/HighMassVHbbAnalysis/Heppy/test/crab/crab_projects_D14_003/crab_HBB_HEPPY_D14_003_WprimeToWhToWlephbb_narrow_M-1000_13TeV-madgraph__RunIISpring15MiniAODv2-74X_mcRun2_asymptotic_v2-v1/crab.log

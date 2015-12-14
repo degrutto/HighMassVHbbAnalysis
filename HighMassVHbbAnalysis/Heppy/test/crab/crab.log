@@ -1,0 +1,38 @@
+DEBUG 2015-12-01 16:48:28,161: 	 Executing command: 'status'
+DEBUG 2015-12-01 16:48:28,161: 	 Found CRAB cache file /afs/cern.ch/user/d/degrutto/.crab3
+DEBUG 2015-12-01 16:48:35,985: 	 Executing command: 'status'
+DEBUG 2015-12-01 16:48:35,985: 	 Found CRAB cache file /afs/cern.ch/user/d/degrutto/.crab3
+DEBUG 2015-12-01 16:48:41,624: 	 Executing command: 'status'
+DEBUG 2015-12-01 16:48:41,625: 	 Found CRAB cache file /afs/cern.ch/user/d/degrutto/.crab3
+DEBUG 2015-12-01 16:48:45,686: 	 Executing command: 'status'
+DEBUG 2015-12-01 16:48:45,686: 	 Found CRAB cache file /afs/cern.ch/user/d/degrutto/.crab3
+DEBUG 2015-12-01 16:48:45,705: 	 Checking credentials
+DEBUG 2015-12-01 16:48:45,705: 	 Found proxy file /tmp/x509up_u24426
+DEBUG 2015-12-01 16:48:45,705: 	 Getting proxy life time left
+DEBUG 2015-12-01 16:48:46,414: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u24426 -timeleft
+ output : 42982
+
+ error: 
+ retcode : 0
+DEBUG 2015-12-01 16:48:46,921: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u24426 -actimeleft
+ output : 42982
+
+ error: 
+ retcode : 0
+DEBUG 2015-12-01 16:48:46,922: 	 Proxy valid for 11:56:22 hours
+ERROR 2015-12-01 16:48:46,922: 	 Cannot find .requestcache file in CRAB project directory /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/src/HighMassVHbbAnalysis/Heppy/test/crab/crab_projects_D14_003
+ERROR 2015-12-01 16:48:46,922: 	 Caught exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc481/cms/crabclient/3.3.1511-comp2/bin/crab", line 159, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc481/cms/crabclient/3.3.1511-comp2/bin/crab", line 145, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc481/cms/crabclient/3.3.1511-comp2/lib/python2.6/site-packages/CRABClient/Commands/SubCommand.py", line 318, in __init__
+    self.loadLocalCache(proxyOptsSetPlace)
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc481/cms/crabclient/3.3.1511-comp2/lib/python2.6/site-packages/CRABClient/Commands/SubCommand.py", line 428, in loadLocalCache
+    self.cachedinfo, self.logfile = loadCache(self.requestarea, self.logger)
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc481/cms/crabclient/3.3.1511-comp2/lib/python2.6/site-packages/CRABClient/ClientUtilities.py", line 445, in loadCache
+    raise CachefileNotFoundException(msg)
+CachefileNotFoundException: Cannot find .requestcache file in CRAB project directory /afs/cern.ch/work/d/degrutto/private/highmassvhbb/CMSSW_7_4_15/src/HighMassVHbbAnalysis/Heppy/test/crab/crab_projects_D14_003
