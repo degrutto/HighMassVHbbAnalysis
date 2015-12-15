@@ -125,7 +125,7 @@ treeProducer= cfg.Analyzer(
                 "genallstatus2bhadrons"    : NTupleCollection("GenStatus2bHad",     genParticleType, 15, help="Generated Status 2 b Hadrons"),
 #                "genallstatus2bhadronsv2"    : NTupleCollection("GenStatus2bHad_v2",     genParticleType, 15, help="Generated Status 2 b Hadrons"),
                 "gennus"          : NTupleCollection("GenNu", genParticleType, 4, help="Generated neutrinos"), #added
-                "gentaus"       : NTupleCollection("GenTau", genParticleType, 4, help="Generated taus"), #added
+                "genMyTaus"       : NTupleCollection("GenTau", genParticleType, 4, help="Generated taus"), #added
                 "gennusFromTop"    : NTupleCollection("GenNuFromTop",     genParticleType, 4, help="Generated neutrino from t->W decay"),
                 "genbquarksFromH"      : NTupleCollection("GenBQuarkFromH",  genParticleType, 4, help="Generated bottom quarks from Higgs decays"),
                 "genbquarksFromTop"      : NTupleCollection("GenBQuarkFromTop",  genParticleType, 4, help="Generated bottom quarks from top decays"),
@@ -205,7 +205,8 @@ JetAna = JetAnalyzer.defaultConfig
 from PhysicsTools.Heppy.analyzers.gen.LHEAnalyzer import LHEAnalyzer 
 LHEAna = LHEAnalyzer.defaultConfig
 
-from PhysicsTools.Heppy.analyzers.gen.GeneratorAnalyzer import GeneratorAnalyzer 
+#from PhysicsTools.Heppy.analyzers.gen.GeneratorAnalyzer import GeneratorAnalyzer 
+from HighMassVHbbAnalysis.Heppy.GeneratorAnalyzer import GeneratorAnalyzer
 GenAna = GeneratorAnalyzer.defaultConfig
 from HighMassVHbbAnalysis.Heppy.VHGeneratorAnalyzer import GeneratorAnalyzer as  VHGeneratorAnalyzer
 VHGenAna = VHGeneratorAnalyzer.defaultConfig

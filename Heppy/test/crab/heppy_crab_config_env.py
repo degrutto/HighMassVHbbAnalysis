@@ -11,6 +11,6 @@ if not m :
 
 sample=m.group(1)+"__"+m.group(2)
 
-config.General.requestName+= "_"+sample
+config.General.requestName+= "_"+m.group(1)#sample
 config.Data.inputDataset = dataset
 config.Data.outputDatasetTag += "_"+sample
