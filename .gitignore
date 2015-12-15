@@ -1,0 +1,8 @@
+_init__.py
+*.pyc
+.*.swp
+.#*
+#*#
+*~
+*.pyc
+*Loop*
