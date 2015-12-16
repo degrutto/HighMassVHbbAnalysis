@@ -43,8 +43,8 @@ config.Data.publication = True
 config.Data.outputDatasetTag = 'HBB_HEPPY_D14'
 
 config.section_("Site")
-config.Site.storageSite = "T2_CH_CERN"
-config.Site.whitelist = ["T2_CH_CERN"]
+config.Site.storageSite = "T2_IT_Rome"
+#config.Site.whitelist = ["T2_CH_CERN"]
 
 
 #config.Data.ignoreLocality = True

@@ -28,7 +28,7 @@ def initialize(isMC=True):
 
     process = cms.Process("EX")
     process.source = cms.Source("PoolSource",
-        fileNames = cms.untracked.vstring("file:///scratch/gregor/TTJets_MSDecaysCKM_central_Tune4C_13TeV_MiniAOD.root")
+        fileNames = cms.untracked.vstring('root://xrootd.unl.edu//store/mc/RunIISpring15MiniAODv2/WprimeToWhToWlephbb_narrow_M-1200_13TeV-madgraph/MINIAODSIM/Asympt50ns_74X_mcRun2_asymptotic50ns_v0-v1/30000/6248D38C-8D76-E511-B243-20CF305B058C.root')
     )
     process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(100) )
 #    process.met = cms.EDFilter("PtMinCandViewSelector",
