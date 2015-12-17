@@ -433,6 +433,18 @@ def initialize(isMC=True):
 
         genJetCollection = "slimmedGenJets"
 
+
+        genJetInputParticleCollection = 'packedGenParticles'
+             
+        from RecoJets.JetProducers.ak4GenJets_cfi import ak4GenJets
+        process.ak8GenJetsCustom = ak4GenJets.clone(
+            src = genJetInputParticleCollection,
+            rParam = cms.double(0.8),
+            jetAlgorithm = cms.string("AntiKt")
+            )
+ #        genJetAK08Collection = "ak8GenJetsCustom"
+
+
         # Ghost particle collection used for Hadron-Jet association
         # MUST use proper input particle collection
         from PhysicsTools.JetMCAlgos.HadronAndPartonSelector_cfi import selectedHadronsAndPartons
@@ -469,6 +481,7 @@ def initialize(isMC=True):
         process.OUT.outputCommands.append("keep *_matchGenCHadron__EX")
         process.OUT.outputCommands.append("keep *_matchGenBHadron_*_EX")
         process.OUT.outputCommands.append("keep *_matchGenCHadron_*_EX")
+        process.OUT.outputCommands.append("keep *_ak8GenJetsCustom_*_EX")
 
     #Schedule to run soft muon and electron taggers on miniAOD
     process.softPFElectronsTagInfos.jets = cms.InputTag("slimmedJets")

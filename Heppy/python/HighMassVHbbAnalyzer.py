@@ -116,7 +116,7 @@ class HighMassVHbbAnalyzer( Analyzer ):
         ## Clean Jets from leptons
         leptons = []
         if hasattr(event, 'inclusiveLeptons'):
-           leptons = [ l for l in event.inclusiveLeptons if ( l.pt()>100 and  ( (abs(l.pdgId()) ==13 and l.relIso03<0.4 ) or (abs(l.pdgId())==11 and l.relIso04 <0.4) ) ) ]
+           leptons = [ l for l in event.inclusiveLeptons if ( l.pt()>80 and  ( (abs(l.pdgId()) ==13 and l.relIso03<0.4 ) or (abs(l.pdgId())==11 and l.relIso04 <0.4) ) ) ]
               
         if hasattr(event, 'ak08'):
             AK08Jets = [ j for j in event.ak08  ]

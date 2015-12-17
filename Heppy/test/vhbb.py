@@ -119,7 +119,8 @@ treeProducer= cfg.Analyzer(
 
 		#dump of gen objects
                 #"generatorSummary"    : NTupleCollection("GenSummary", genParticleWithLinksType, 30, help="Generator summary, see description in Heppy GeneratorAnalyzer",mcOnly=True),
-                "genJets"    : NTupleCollection("GenJet",   genJetType, 15, help="Generated jets with hadron matching, sorted by pt descending",filter=lambda x: x.pt() > 20,mcOnly=True),
+                "genJets"    : NTupleCollection("GenJet",  genJetType, 15, help="Generated jets with hadron matching, sorted by pt descending",filter=lambda x: x.pt() > 20,mcOnly=True),
+                "ak8genJets"    : NTupleCollection("ak08GenJet",   genParticleType, 15, help="Generated jets (without hadron matching, but with neutrinos), sorted by pt descending",filter=lambda x: x.pt() > 20,mcOnly=True), 
                 "genHiggsSisters"    : NTupleCollection("GenHiggsSisters",     genParticleType, 4, help="Sisters of the Higgs bosons"),
                 "gentopquarks"    : NTupleCollection("GenTop",     genParticleType, 4, help="Generated top quarks from hard scattering"),
                 "genallstatus2bhadrons"    : NTupleCollection("GenStatus2bHad",     genParticleType, 15, help="Generated Status 2 b Hadrons"),
