@@ -18,6 +18,7 @@ leptonTypeVHbb = NTupleObjectType("leptonTypeVHbb", baseObjectTypes = [ leptonTy
     NTupleVariable("chargedHadRelIso03",  lambda x : x.chargedHadronIsoR(0.3)/x.pt(), help="PF Rel Iso, R=0.3, charged hadrons only"),
     NTupleVariable("chargedHadRelIso04",  lambda x : x.chargedHadronIsoR(0.4)/x.pt(), help="PF Rel Iso, R=0.4, charged hadrons only"),
     NTupleVariable("eleSieie",    lambda x : x.full5x5_sigmaIetaIeta() if abs(x.pdgId())==11 else -1., help="sigma IEtaIEta for electrons"),
+    NTupleVariable("e5x5", lambda x : x.e5x5() if abs(x.pdgId())==11 else -1., help="e5x5 for electrons"), #added
     NTupleVariable("e2x5Max",    lambda x : x.e2x5Max() if abs(x.pdgId())==11 else -1., help="e2x5Max for electrons"),
     NTupleVariable("e1x5",    lambda x : x.e1x5() if abs(x.pdgId())==11 else -1., help="e1x5 for electrons"),
     NTupleVariable("isolTrkPt",    lambda x : x.dr03TkSumPt() if abs(x.pdgId())==11 else -1., help="isolTrkPt for electrons"),
@@ -41,6 +42,11 @@ leptonTypeVHbb = NTupleObjectType("leptonTypeVHbb", baseObjectTypes = [ leptonTy
     NTupleVariable("caloCompatibility",      lambda lepton : lepton.caloCompatibility() if abs(lepton.pdgId()) == 13 else 0, help="Calorimetric compatibility"), 
     NTupleVariable("globalTrackChi2",      lambda lepton : lepton.globalTrack().normalizedChi2() if abs(lepton.pdgId()) == 13 and lepton.globalTrack().isNonnull() else 0, help="Global track normalized chi2"), 
     NTupleVariable("nChamberHits", lambda lepton: lepton.globalTrack().hitPattern().numberOfValidMuonHits() if abs(lepton.pdgId()) == 13 and lepton.globalTrack().isNonnull() else -1, help="Number of muon chamber hits (-1 for electrons)"),
+    NTupleVariable("isBarrelEle", lambda x : getattr(x, "isBarrelEle", -1), int, help="Barrel Electron"), #added
+    NTupleVariable("isEndCapEle", lambda x : getattr(x, "isEndCapEle", -1), int, help="EndCap Electron"), #added
+    NTupleVariable("isEcalDriven", lambda x : x.ecalDrivenSeed() if abs(x.pdgId()) == 11 else -1, int, help="is Ecal Driven to cut on ID"), #added
+    NTupleVariable("isMyGoodMuon", lambda x : getattr(x, "isMyGoodMuon", -1), int, help="High Pt muon ID"), #added
+    NTupleVariable("isMyGoodElectron", lambda x : getattr(x, "isMyGoodElectron", -1), int, help="High Pt electron ID"), #added
     NTupleVariable("relPtError", lambda lepton: lepton.muonBestTrack().ptError()/lepton.muonBestTrack().pt() if abs(lepton.pdgId()) == 13 and lepton.muonBestTrack().isNonnull() else -1, help="relative error of muon pt, intended for high pt ID  (-1 for electrons)"),
     NTupleVariable("isPFMuon", lambda lepton: lepton.isPFMuon() if abs(lepton.pdgId()) == 13 else 0, help="1 if muon passes particle flow ID"),
     NTupleVariable("isHighPtMuon", lambda x : x.muonID("POG_ID_HighPt") if abs(x.pdgId()) == 13 else -1, int, help="High pt id for muons"),
@@ -95,6 +101,9 @@ jetTypeVHbb = NTupleObjectType("jet",  baseObjectTypes = [ jetType ], variables 
    # NTupleVariable("mcMatchId",    lambda x : x.mcMatchId,   int, mcOnly=True, help="Match to source from hard scatter (25 for H, 6 for t, 23/24 for W/Z)"),
    # NTupleVariable("puId", lambda x : x.puJetIdPassed, int,     mcOnly=False, help="puId (full MVA, loose WP, 5.3.X training on AK5PFchs: the only thing that is available now)"),
    # NTupleVariable("id",    lambda x : x.jetID("POG_PFID") , int, mcOnly=False,help="POG Loose jet ID"),
+    NTupleVariable("isMyGoodLooseJet", lambda x : getattr(x, "isMyGoodLooseJet", -1), int, help="Loose Jet ID"), #added
+    NTupleVariable("isMyGoodTightJet", lambda x : getattr(x, "isMyGoodTightJet", -1), int, help="Tight Jet ID"), #added
+    NTupleVariable("isMyGoodTightLepVetoJet", lambda x : getattr(x, "isMyGoodTightLepVetoJet", -1), int, help="Tight Lepton Veto ID for jets"), #added
     NTupleVariable("chHEF", lambda x : x.chargedHadronEnergyFraction(), float, mcOnly = False, help="chargedHadronEnergyFraction (relative to uncorrected jet energy)"),
     NTupleVariable("neHEF", lambda x : x.neutralHadronEnergyFraction(), float, mcOnly = False,help="neutralHadronEnergyFraction (relative to uncorrected jet energy)"),
     NTupleVariable("chEmEF", lambda x : x.chargedEmEnergyFraction(), float, mcOnly = False,help="chargedEmEnergyFraction (relative to uncorrected jet energy)"),
