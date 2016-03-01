@@ -10,24 +10,28 @@ import copy, os
 
 leptonTypeVHbb = NTupleObjectType("leptonTypeVHbb", baseObjectTypes = [ leptonType ], variables = [
     # Loose id 
-    NTupleVariable("looseIdSusy", lambda x : x.looseIdSusy if hasattr(x, 'looseIdSusy') else -1, int, help="Loose ID for Susy ntuples (always true on selected leptons)"),
-    NTupleVariable("looseIdPOG", lambda x : x.muonID("POG_ID_Loose") if abs(x.pdgId()) == 13 else -1, int, help="Loose ID for Susy ntuples (always true on selected leptons)"),
+    NTupleVariable("looseIdSusy", lambda x : x.looseIdSusy if hasattr(x, 'looseIdSusy') else -999, int, help="Loose ID for Susy ntuples (always true on selected leptons)"),
+    NTupleVariable("looseIdPOG", lambda x : x.muonID("POG_ID_Loose") if abs(x.pdgId()) == 13 else -999, int, help="Loose ID for Susy ntuples (always true on selected leptons)"),
 #    NTupleVariable("heep51eleId", lambda x : x.electronID("egmGsfElectronIDs:heepElectronID-HEEPV51-miniAOD") if abs(x.pdgId()) == 11 else -1, int, help="heep 51 ID for electrons)"),
 #    NTupleVariable("heep51eleId", lambda x : x.electronID("heepElectronID-HEEPV51-miniAOD") if abs(x.pdgId()) == 11 else -1, int, help="heep 51 ID for electrons)"),
     # Isolations with the two radia
     NTupleVariable("chargedHadRelIso03",  lambda x : x.chargedHadronIsoR(0.3)/x.pt(), help="PF Rel Iso, R=0.3, charged hadrons only"),
     NTupleVariable("chargedHadRelIso04",  lambda x : x.chargedHadronIsoR(0.4)/x.pt(), help="PF Rel Iso, R=0.4, charged hadrons only"),
-    NTupleVariable("eleSieie",    lambda x : x.full5x5_sigmaIetaIeta() if abs(x.pdgId())==11 else -1., help="sigma IEtaIEta for electrons"),
-    NTupleVariable("e5x5", lambda x : x.e5x5() if abs(x.pdgId())==11 else -1., help="e5x5 for electrons"), #added
-    NTupleVariable("e2x5Max",    lambda x : x.e2x5Max() if abs(x.pdgId())==11 else -1., help="e2x5Max for electrons"),
-    NTupleVariable("e1x5",    lambda x : x.e1x5() if abs(x.pdgId())==11 else -1., help="e1x5 for electrons"),
-    NTupleVariable("isolTrkPt",    lambda x : x.dr03TkSumPt() if abs(x.pdgId())==11 else -1., help="isolTrkPt for electrons"),
-    NTupleVariable("isolEmHadDepth1",    lambda x : x.dr03EcalRecHitSumEt() + x.dr03HcalDepth1TowerSumEt() if abs(x.pdgId())==11 else -1., help="isolEmHadDepth1 for electrons"),
-    NTupleVariable("eleDEta",     lambda x : x.deltaEtaSuperClusterTrackAtVtx() if abs(x.pdgId())==11 else -1., help="delta eta for electrons"),
-    NTupleVariable("eleDPhi",     lambda x : x.deltaPhiSuperClusterTrackAtVtx() if abs(x.pdgId())==11 else -1., help="delta phi for electrons"),
-    NTupleVariable("eleHoE",      lambda x : x.hadronicOverEm() if abs(x.pdgId())==11 else -1., help="H/E for electrons"),
-    NTupleVariable("eleMissingHits",      lambda x : x.lostInner() if abs(x.pdgId())==11 else -1., help="Missing hits for electrons"),
-    NTupleVariable("eleChi2",      lambda x : x.gsfTrack().normalizedChi2() if abs(x.pdgId())==11 else -1., help="Track chi squared for electrons' gsf tracks"),
+    NTupleVariable("eleSieie",    lambda x : x.full5x5_sigmaIetaIeta() if abs(x.pdgId())==11 else -999., help="sigma IEtaIEta for electrons"),
+    NTupleVariable("e5x5", lambda x : x.e5x5() if abs(x.pdgId())==11 else -999., help="e5x5 for electrons"), #added
+    NTupleVariable("e2x5Max",    lambda x : x.e2x5Max() if abs(x.pdgId())==11 else -999., help="e2x5Max for electrons"),
+    NTupleVariable("e1x5",    lambda x : x.e1x5() if abs(x.pdgId())==11 else -999., help="e1x5 for electrons"),
+    NTupleVariable("isolTrkPt",    lambda x : x.dr03TkSumPt() if abs(x.pdgId())==11 else -999., help="isolTrkPt for electrons"),
+    NTupleVariable("isolEmHadDepth1",    lambda x : x.dr03EcalRecHitSumEt() + x.dr03HcalDepth1TowerSumEt() if abs(x.pdgId())==11 else -999., help="isolEmHadDepth1 for electrons"),
+    NTupleVariable("eleDEta",     lambda x : x.deltaEtaSuperClusterTrackAtVtx() if abs(x.pdgId())==11 else -999., help="delta eta for electrons"),
+    NTupleVariable("eleDPhi",     lambda x : x.deltaPhiSuperClusterTrackAtVtx() if abs(x.pdgId())==11 else -999., help="delta phi for electrons"),
+    NTupleVariable("eleHoE",      lambda x : x.hadronicOverEm() if abs(x.pdgId())==11 else -999., help="H/E for electrons"),
+    NTupleVariable("eleMissingHits",      lambda x : x.lostInner() if abs(x.pdgId())==11 else -999., help="Missing hits for electrons"),
+    NTupleVariable("eleChi2",      lambda x : x.gsfTrack().normalizedChi2() if abs(x.pdgId())==11 else -999., help="Track chi squared for electrons' gsf tracks"),
+    NTupleVariable("eleClusterEta", lambda x : x.superCluster().eta() if abs(x.pdgId())==11 else -999., help="Electron Supercluster Eta"),
+    NTupleVariable("eleClusterEnergy", lambda x : x.superCluster().energy() if abs(x.pdgId())==11 else -999., help="Electron Supercluster Energy"),
+    NTupleVariable("eleClusterDEta", lambda x : x.deltaEtaSeedClusterTrackAtVtx() if abs(x.pdgId())==11 else -999., help="Electron Supercluster DEta"),
+    NTupleVariable("eleClusterDPhi", lambda x : x.deltaPhiSuperClusterTrackAtVtx() if abs(x.pdgId())==11 else -999., help="Electron Supercluster DPhi"),
     # Extra electron id variables
 #    NTupleVariable("convVetoFull", lambda x : (x.passConversionVeto() and x.gsfTrack().trackerExpectedHitsInner().numberOfLostHits() == 0) if abs(x.pdgId())==11 else 1, int, help="Conv veto + no missing hits for electrons, always true for muons."),
     #NTupleVariable("eleMVAId",     lambda x : (x.electronID("POG_MVA_ID_NonTrig") + 2*x.electronID("POG_MVA_ID_Trig")) if abs(x.pdgId()) == 11 else -1, int, help="Electron mva id working point: 0=none, 1=non-trig, 2=trig, 3=both"),
@@ -41,19 +45,20 @@ leptonTypeVHbb = NTupleObjectType("leptonTypeVHbb", baseObjectTypes = [ leptonTy
     NTupleVariable("trkKink",      lambda lepton : lepton.combinedQuality().trkKink if abs(lepton.pdgId()) == 13 else 0, help="Tracker kink-finder"), 
     NTupleVariable("caloCompatibility",      lambda lepton : lepton.caloCompatibility() if abs(lepton.pdgId()) == 13 else 0, help="Calorimetric compatibility"), 
     NTupleVariable("globalTrackChi2",      lambda lepton : lepton.globalTrack().normalizedChi2() if abs(lepton.pdgId()) == 13 and lepton.globalTrack().isNonnull() else 0, help="Global track normalized chi2"), 
-    NTupleVariable("nChamberHits", lambda lepton: lepton.globalTrack().hitPattern().numberOfValidMuonHits() if abs(lepton.pdgId()) == 13 and lepton.globalTrack().isNonnull() else -1, help="Number of muon chamber hits (-1 for electrons)"),
+    NTupleVariable("nChamberHits", lambda lepton: lepton.globalTrack().hitPattern().numberOfValidMuonHits() if abs(lepton.pdgId()) == 13 and lepton.globalTrack().isNonnull() else -999, help="Number of muon chamber hits (-1 for electrons)"),
     NTupleVariable("isBarrelEle", lambda x : getattr(x, "isBarrelEle", -1), int, help="Barrel Electron"), #added
     NTupleVariable("isEndCapEle", lambda x : getattr(x, "isEndCapEle", -1), int, help="EndCap Electron"), #added
-    NTupleVariable("isEcalDriven", lambda x : x.ecalDrivenSeed() if abs(x.pdgId()) == 11 else -1, int, help="is Ecal Driven to cut on ID"), #added
+    NTupleVariable("isEcalDriven", lambda x : x.ecalDrivenSeed() if abs(x.pdgId()) == 11 else -999, int, help="is Ecal Driven to cut on ID"), #added
     NTupleVariable("isMyGoodMuon", lambda x : getattr(x, "isMyGoodMuon", -1), int, help="High Pt muon ID"), #added
     NTupleVariable("isMyGoodElectron", lambda x : getattr(x, "isMyGoodElectron", -1), int, help="High Pt electron ID"), #added
-    NTupleVariable("relPtError", lambda lepton: lepton.muonBestTrack().ptError()/lepton.muonBestTrack().pt() if abs(lepton.pdgId()) == 13 and lepton.muonBestTrack().isNonnull() else -1, help="relative error of muon pt, intended for high pt ID  (-1 for electrons)"),
+    NTupleVariable("relPtError", lambda lepton: lepton.muonBestTrack().ptError()/lepton.muonBestTrack().pt() if abs(lepton.pdgId()) == 13 and lepton.muonBestTrack().isNonnull() else -999, help="relative error of muon pt, intended for high pt ID  (-1 for electrons)"),
     NTupleVariable("isPFMuon", lambda lepton: lepton.isPFMuon() if abs(lepton.pdgId()) == 13 else 0, help="1 if muon passes particle flow ID"),
-    NTupleVariable("isHighPtMuon", lambda x : x.muonID("POG_ID_HighPt") if abs(x.pdgId()) == 13 else -1, int, help="High pt id for muons"),
-    NTupleVariable("muTrackIso", lambda lepton: lepton.trackIso() if abs(lepton.pdgId()) == 13 else -1, help="muon track isolation"),
+    NTupleVariable("muon_dz", lambda x : x.muonBestTrack().dz() if abs(x.pdgId()) == 13 else -999, help="dz for muons"),
+    NTupleVariable("isHighPtMuon", lambda x : x.muonID("POG_ID_HighPt") if abs(x.pdgId()) == 13 else -999, int, help="High pt id for muons"),
+    NTupleVariable("muTrackIso", lambda lepton: lepton.trackIso() if abs(lepton.pdgId()) == 13 else -999, help="muon track isolation"),
     NTupleVariable("isGlobalMuon", lambda lepton: lepton.isGlobalMuon() if abs(lepton.pdgId()) == 13 else 0, help="1 if muon is global muon"),
     NTupleVariable("isTrackerMuon", lambda lepton: lepton.isTrackerMuon() if abs(lepton.pdgId()) == 13 else 0, help="1 if muon is tracker muon"),
-    NTupleVariable("pixelHits", lambda lepton : lepton.innerTrack().hitPattern().numberOfValidPixelHits() if abs(lepton.pdgId()) == 13 and lepton.innerTrack().isNonnull() else -1, help="Number of pixel hits (-1 for electrons)"),
+    NTupleVariable("pixelHits", lambda lepton : lepton.innerTrack().hitPattern().numberOfValidPixelHits() if abs(lepton.pdgId()) == 13 and lepton.innerTrack().isNonnull() else -999, help="Number of pixel hits (-1 for electrons)"),
     # Extra tracker-related id variables
     NTupleVariable("trackerLayers", lambda x : (x.track() if abs(x.pdgId())==13 else x.gsfTrack()).hitPattern().trackerLayersWithMeasurement(), int, help="Tracker Layers"),
     NTupleVariable("pixelLayers", lambda x : (x.track() if abs(x.pdgId())==13 else x.gsfTrack()).hitPattern().pixelLayersWithMeasurement(), int, help="Pixel Layers"),
@@ -63,11 +68,13 @@ leptonTypeVHbb = NTupleObjectType("leptonTypeVHbb", baseObjectTypes = [ leptonTy
     NTupleVariable("jetPtRatio", lambda lepton : lepton.pt()/lepton.jet.pt() if hasattr(lepton,'jet') else -1, help="pt(lepton)/pt(nearest jet)"),
     NTupleVariable("jetBTagCSV", lambda lepton : lepton.jet.btag('pfCombinedInclusiveSecondaryVertexV2BJetTags') if hasattr(lepton,'jet') and hasattr(lepton.jet, 'btag') else -99, help="btag of nearest jet"),
     NTupleVariable("jetDR",      lambda lepton : deltaR(lepton.eta(),lepton.phi(),lepton.jet.eta(),lepton.jet.phi()) if hasattr(lepton,'jet') else -1, help="deltaR(lepton, nearest jet)"),
-    NTupleVariable("pfRelIso03",      lambda ele : (ele.pfIsolationVariables().sumChargedHadronPt + max(ele.pfIsolationVariables().sumNeutralHadronEt + ele.pfIsolationVariables().sumPhotonEt - 0.5 * ele.pfIsolationVariables().sumPUPt,0.0)) / ele.pt()  if abs(ele.pdgId()) == 11 else -1, help="0.3 particle based iso"),
-    NTupleVariable("pfRelIso04",      lambda mu : (mu.pfIsolationR04().sumChargedHadronPt + max( mu.pfIsolationR04().sumNeutralHadronEt + mu.pfIsolationR04().sumPhotonEt - 0.5 * mu.pfIsolationR04().sumPUPt,0.0)) / mu.pt() if abs(mu.pdgId()) == 13 else -1, help="0.4 particle based iso"),
-    NTupleVariable("etaSc", lambda x : x.superCluster().eta() if abs(x.pdgId())==11 else -100, help="Electron supercluster pseudorapidity"),
-    NTupleVariable("eleExpMissingInnerHits", lambda x : x.gsfTrack().hitPattern().numberOfHits(ROOT.reco.HitPattern.MISSING_INNER_HITS) if abs(x.pdgId())==11 else -1, help="Electron expected missing inner hits"),
+    NTupleVariable("pfRelIso03",      lambda ele : (ele.pfIsolationVariables().sumChargedHadronPt + max(ele.pfIsolationVariables().sumNeutralHadronEt + ele.pfIsolationVariables().sumPhotonEt - 0.5 * ele.pfIsolationVariables().sumPUPt,0.0)) / ele.pt()  if abs(ele.pdgId()) == 11 else -999, help="0.3 particle based iso"),
+    NTupleVariable("pfRelIso04",      lambda mu : (mu.pfIsolationR04().sumChargedHadronPt + max( mu.pfIsolationR04().sumNeutralHadronEt + mu.pfIsolationR04().sumPhotonEt - 0.5 * mu.pfIsolationR04().sumPUPt,0.0)) / mu.pt() if abs(mu.pdgId()) == 13 else -999, help="0.4 particle based iso"),
+    NTupleVariable("muonDB", lambda x : x.dB() if abs(x.pdgId()) == 13 else -999, help="muon DB"),
+    NTupleVariable("etaSc", lambda x : x.superCluster().eta() if abs(x.pdgId())==11 else -999, help="Electron supercluster pseudorapidity"),
+    NTupleVariable("eleExpMissingInnerHits", lambda x : x.gsfTrack().hitPattern().numberOfHits(ROOT.reco.HitPattern.MISSING_INNER_HITS) if abs(x.pdgId())==11 else -999, help="Electron expected missing inner hits"),
     NTupleVariable("eleooEmooP", lambda x : abs(1.0/x.ecalEnergy() - x.eSuperClusterOverP()/x.ecalEnergy()) if abs(x.pdgId())==11 and x.ecalEnergy()>0.0 else 9e9 , help="Electron 1/E - 1/P"),
+    NTupleVariable("muonTrackerLayers", lambda x : x.innerTrack().hitPattern().trackerLayersWithMeasurement() if abs(x.pdgId()) == 13 else -999, help="muon tracker layers"),
     # MC-match info
 #    NTupleVariable("mcMatchId",  lambda x : x.mcMatchId, int, mcOnly=True, help="Match to source from hard scatter (25 for H, 6 for t, 23/24 for W/Z)"),
 #    NTupleVariable("mcMatchAny",  lambda x : x.mcMatchAny, int, mcOnly=True, help="Match to any final state leptons: -mcMatchId if prompt, 0 if unmatched, 1 if light flavour, 2 if heavy flavour (b)"),
@@ -223,6 +230,13 @@ fatjetType = NTupleObjectType("fatjet",  baseObjectTypes = [ fourVectorType ], v
 # Four Vector + Nsubjettiness + masses + Hbb-Tag
 
 ak8FatjetType = NTupleObjectType("ak8fatjet",  baseObjectTypes = [ fourVectorType ], variables = [
+    NTupleVariable("chHEFrac", lambda x : x.chargedHadronEnergyFraction(), float, help="hadronic charged energy fraction for AK08"), #added
+    NTupleVariable("neHEFrac", lambda x : x.neutralHadronEnergyFraction(), float, help="hadronic neutral energy fraction for AK08"), #added
+    NTupleVariable("chEmEFrac", lambda x : x.chargedEmEnergyFraction(), float, help="em charged energy fraction for AK08"), #added
+    NTupleVariable("neEmEFrac", lambda x : x.neutralEmEnergyFraction(), float, help="em neutral energy fraction for AK08"), #added
+    NTupleVariable("chMult", lambda x : x.chargedMultiplicity(), int, help="Ak08 charged multiplicity"),#added
+    NTupleVariable("neMult", lambda x : x.neutralMultiplicity(), int, help="Ak08 neutral multiplicity"),#added
+    NTupleVariable("muEFrac", lambda x : x.muonEnergyFraction(), float, help="Ak08 muon energy fraction"),#added
     NTupleVariable("tau1",  lambda x : x.userFloat("NjettinessAK8:tau1"), help="Nsubjettiness (1 axis)"),
     NTupleVariable("tau2",  lambda x : x.userFloat("NjettinessAK8:tau2"), help="Nsubjettiness (2 axes)"),
     NTupleVariable("tau3",  lambda x : x.userFloat("NjettinessAK8:tau3"), help="Nsubjettiness (3 axes)"),

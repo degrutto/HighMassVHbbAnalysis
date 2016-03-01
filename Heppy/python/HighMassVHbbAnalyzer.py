@@ -27,7 +27,8 @@ class HighMassVHbbAnalyzer( Analyzer ):
     '''
     # === Adding ID function for muons ===
     def isGoodMuon(self,lepton):#self,lepton):
-      if((lepton.isGlobalMuon()) and (lepton.globalTrack().hitPattern().numberOfValidMuonHits()>0) and (lepton.numberOfMatchedStations()>1) and ((lepton.muonBestTrack().ptError()/lepton.muonBestTrack().pt())<0.3) and (fabs(lepton.muonBestTrack().dxy()<0.2 and lepton.muonBestTrack().isNonnull())) and (fabs(lepton.muonBestTrack().dz())<0.5 and lepton.muonBestTrack().isNonnull()) and (lepton.innerTrack().hitPattern().numberOfValidPixelHits()>0) and (lepton.innerTrack().hitPattern().trackerLayersWithMeasurement()>5)):
+      #if((lepton.isGlobalMuon()) and (lepton.globalTrack().hitPattern().numberOfValidMuonHits()>0) and (lepton.numberOfMatchedStations()>1) and ((lepton.muonBestTrack().ptError()/lepton.muonBestTrack().pt())<0.3) and (fabs(lepton.muonBestTrack().dxy()<0.2 and lepton.muonBestTrack().isNonnull())) and (fabs(lepton.muonBestTrack().dz())<0.5 and lepton.muonBestTrack().isNonnull()) and (lepton.innerTrack().hitPattern().numberOfValidPixelHits()>0) and (lepton.innerTrack().hitPattern().trackerLayersWithMeasurement()>5)):
+      if(lepton.isGlobalMuon() and lepton.globalTrack().hitPattern().numberOfValidMuonHits() > 0 and lepton.numberOfMatchedStations() > 1 and lepton.muonBestTrack().ptError()/lepton.muonBestTrack().pt()<0.3 and lepton.dB()< 0.2 and lepton.innerTrack().hitPattern().numberOfValidPixelHits()>0 and lepton.innerTrack().hitPattern().trackerLayersWithMeasurement()>5):
         #print "We have a GOOD Muon!"
         return True
       else:
@@ -36,31 +37,17 @@ class HighMassVHbbAnalyzer( Analyzer ):
 
     # === Adding ID function for electrons ===
     def isGoodElectron(self,lepton):#self,lepton):
-     # print "pt ", lepton.pt()
-     # print "EcalDriven ", lepton.ecalDrivenSeed()
-     # print "Eta ", lepton.eta()
-     # print "DEta ", abs(lepton.deltaEtaSuperClusterTrackAtVtx())
-     # print "DPhi ", abs(lepton.deltaPhiSuperClusterTrackAtVtx())
-     # print "HoE ", lepton.hadronicOverEm()
-     # print "2x5 ", lepton.e2x5Max()
-     # print "1x5 ", lepton.e1x5()
-     # print "Depth ",(lepton.dr03EcalRecHitSumEt()+lepton.dr03HcalDepth1TowerSumEt())
-     # #print "RHO ", event.rho()#lepton.bestGsfElectron.gsfTrack().outerMomentum().Rho()#gsfTrack().rho()
-     # #test = 2+0.03*(lepton.pt())+0.28*(lepton.rho())
-     # #print " < ", $test
-     # print "TrackIso ", lepton.dr03TkSumPt() 
-     # print "Inner layer... ", lepton.gsfTrack().hitPattern().numberOfLostHits(ROOT.reco.HitPattern.MISSING_INNER_HITS)#gsfTrack()
-     # print "dxy ", (abs(lepton.gsfTrack().dxy()))
-     # print "++++++++++++++"
-      if((lepton.pt()>35) and (lepton.ecalDrivenSeed()==True)):#isEcalDriven()==1)):
-        if(abs(lepton.eta())<1.442):                             #Barrel
-           if((abs(lepton.deltaEtaSuperClusterTrackAtVtx())<0.004) and (abs(lepton.deltaPhiSuperClusterTrackAtVtx())<0.06) and (lepton.hadronicOverEm()<(1/lepton.pt())+0.05) and (((lepton.e2x5Max()/lepton.e5x5())>0.94) or ((lepton.e1x5()/lepton.e5x5())>0.83)) and (lepton.dr03TkSumPt()<5) and (lepton.gsfTrack().hitPattern().numberOfLostHits(ROOT.reco.HitPattern.MISSING_INNER_HITS)<=1) and  (abs(lepton.dxy())<0.02)): #and ((lepton.dr03EcalRecHitSumEt()+lepton.dr03HcalDepth1TowerSumEt())<(2+0.03*(lepton.pt())+0.28*(lepton.rho())))):
-             print "Barrel good ele"
-             return True
-        elif(abs(lepton.eta())>1.566 and abs(lepton.eta())<2.5): #EndCap
-           if((abs(lepton.deltaEtaSuperClusterTrackAtVtx())<0.006) and (abs(lepton.deltaPhiSuperClusterTrackAtVtx())<0.06) and (lepton.hadronicOverEm()<(5/lepton.pt())+0.05) and (lepton.full5x5_sigmaIetaIeta()>0.03) and (lepton.dr03TkSumPt()<5) and (lepton.gsfTrack().hitPattern().numberOfLostHits(ROOT.reco.HitPattern.MISSING_INNER_HITS)<=1) and  (abs(lepton.dxy())<0.05)): #and ((lepton.dr03EcalRecHitSumEt()+lepton.dr03HcalDepth1TowerSumEt())<(2+0.03*(lepton.pt())+0.28*(lepton.rho())))):
-             print "ENDCAP GOOD Ele!"
-             return True
+      if ((abs(lepton.superCluster().eta())<1.4442 and lepton.ecalDriven() and abs(lepton.deltaEtaSeedClusterTrackAtVtx())<0.004 and abs(lepton.deltaPhiSuperClusterTrackAtVtx())< 0.06 and (lepton.hadronicOverEm()<1.0/lepton.superCluster().energy()+0.05) and (lepton.e2x5Max()/lepton.e5x5()>0.94 or lepton.e1x5()/lepton.e5x5()>0.83) and abs(lepton.dxy())<0.02) or (abs(lepton.superCluster().eta())>1.566 and abs(lepton.superCluster().eta())<2.5 and lepton.ecalDriven() and abs(lepton.deltaEtaSeedClusterTrackAtVtx())<0.006 and abs(lepton.deltaPhiSuperClusterTrackAtVtx())< 0.06 and (lepton.hadronicOverEm()<5.0/lepton.superCluster().energy()+0.05) and abs(lepton.dxy())<0.05 and lepton.full5x5_sigmaIetaIeta()<0.03)):
+        return True
+      #if((lepton.pt()>35) and (lepton.ecalDrivenSeed()==1)):#isEcalDriven()==1)):
+      #  if(abs(lepton.eta())<1.4442):                             #Barrel
+      #     if((abs(lepton.deltaEtaSuperClusterTrackAtVtx())<0.004) and (abs(lepton.deltaPhiSuperClusterTrackAtVtx())<0.06) and (lepton.hadronicOverEm()<(1/lepton.pt())+0.05) and (((lepton.e2x5Max()/lepton.e5x5())>0.94) or ((lepton.e1x5()/lepton.e5x5())>0.83)) and (lepton.dr03TkSumPt()<5) and (lepton.gsfTrack().hitPattern().numberOfLostHits(ROOT.reco.HitPattern.MISSING_INNER_HITS)<=1) and  (abs(lepton.dxy())<0.02)): #and ((lepton.dr03EcalRecHitSumEt()+lepton.dr03HcalDepth1TowerSumEt())<(2+0.03*(lepton.pt())+0.28*(lepton.rho())))):
+      #       print "Barrel good ele"
+      #       return True
+      #  elif(abs(lepton.eta())>1.566 and abs(lepton.eta())<2.5): #EndCap
+      #     if((abs(lepton.deltaEtaSuperClusterTrackAtVtx())<0.006) and (abs(lepton.deltaPhiSuperClusterTrackAtVtx())<0.06) and (lepton.hadronicOverEm()<(5/lepton.pt())+0.05) and (lepton.full5x5_sigmaIetaIeta()>0.03) and (lepton.dr03TkSumPt()<5) and (lepton.gsfTrack().hitPattern().numberOfLostHits(ROOT.reco.HitPattern.MISSING_INNER_HITS)<=1) and  (abs(lepton.dxy())<0.05)): #and ((lepton.dr03EcalRecHitSumEt()+lepton.dr03HcalDepth1TowerSumEt())<(2+0.03*(lepton.pt())+0.28*(lepton.rho())))):
+      #       print "ENDCAP GOOD Ele!"
+      #       return True
       else:
         print "We have a BAD Ele"
         return False
@@ -231,7 +218,7 @@ class HighMassVHbbAnalyzer( Analyzer ):
               print "Elettrone!"      #added
               l.isMyGoodElectron = self.isGoodElectron(l)  #added
               print "Result", l.isMyGoodElectron #added
-        
+        #if hasattr(event, 'inclusiveLeptons'): #removed
           leptons = [ l for l in event.inclusiveLeptons if ( l.pt()>80 and  ( (abs(l.pdgId()) ==13 and l.relIso03<0.4 ) or (abs(l.pdgId())==11 and l.relIso04 <0.4) ) ) ]
               
         if hasattr(event, 'ak08'):

@@ -196,6 +196,7 @@ class GeneratorAnalyzer( Analyzer ):
             event.genbquarksFromTop = []
             event.genbquarksFromH   = []
             event.genlepsFromTop = []
+            event.genlepsFromWPrime = [] #added
             event.genvertex = 0
             if len(event.generatorSummary)>2: event.genvertex=event.generatorSummary[2].vertex().z()
             for p in event.generatorSummary:
@@ -231,6 +232,10 @@ class GeneratorAnalyzer( Analyzer ):
 
                         #have a look at the lepton mothers
                         for mom, momid in momids:
+                            #lepton from WPrime
+                            if momid == 34:
+                                print "bella"
+                                event.genlepsFromWPrime.append(p)
                             #lepton from W
                             if momid == 24:
                                 wmomids = [abs(m.pdgId()) for m in realGenMothers(mom)]

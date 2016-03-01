@@ -28,7 +28,9 @@ def initialize(isMC=True):
 
     process = cms.Process("EX")
     process.source = cms.Source("PoolSource",
-        fileNames = cms.untracked.vstring('root://xrootd.unl.edu//store/mc/RunIISpring15MiniAODv2/WprimeToWhToWlephbb_narrow_M-1200_13TeV-madgraph/MINIAODSIM/Asympt50ns_74X_mcRun2_asymptotic50ns_v0-v1/30000/6248D38C-8D76-E511-B243-20CF305B058C.root')
+        #fileNames = cms.untracked.vstring('root://xrootd.unl.edu//store/mc/RunIISpring15MiniAODv2/WprimeToWhToWlephbb_narrow_M-1200_13TeV-madgraph/MINIAODSIM/Asympt50ns_74X_mcRun2_asymptotic50ns_v0-v1/30000/6248D38C-8D76-E511-B243-20CF305B058C.root')
+#fileNames = cms.untracked.vstring('root://xrootd.unl.edu//store/mc/RunIISpring15MiniAODv2/WprimeToWhToWlephbb_narrow_M-4000_13TeV-madgraph/MINIAODSIM/74X_mcRun2_asymptotic_v2-v1/60000/E4EB03F2-4170-E511-B5C4-00259073E466.root')
+fileNames = cms.untracked.vstring('root://xrootd.unl.edu//store/mc/RunIISpring15MiniAODv2/WprimeToMuNu_M-3000_TuneCUETP8M1_13TeV-pythia8/MINIAODSIM/74X_mcRun2_asymptotic_v2-v1/60000/10EFFE5D-4374-E511-905E-003048F0113E.root')
     )
     process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(100) )
 #    process.met = cms.EDFilter("PtMinCandViewSelector",

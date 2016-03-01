@@ -132,6 +132,7 @@ treeProducer= cfg.Analyzer(
                 "genbquarksFromTop"      : NTupleCollection("GenBQuarkFromTop",  genParticleType, 4, help="Generated bottom quarks from top decays"),
                 "genbquarksFromHafterISR"      : NTupleCollection("GenBQuarkFromHafterISR",  genParticleType, 4, help="Generated bottom quarks from Higgs decays"),
                 "genwzquarks"     : NTupleCollection("GenWZQuark",   genParticleType, 6, help="Generated quarks from W/Z decays"),
+                "genlepsFromWPrime": NTupleCollection("GenLepFromWPrime", genParticleType, 4, help="Generated leptons from W'"), 
                 "genleps"         : NTupleCollection("GenLep",     genParticleType, 4, help="Generated leptons from W/Z decays"),
                 "gentauleps"         : NTupleCollection("GenTaus",     genParticleType, 4, help="Generated taus"),
                 "genlepsFromTop"         : NTupleCollection("GenLepFromTop",     genParticleType, 4, help="Generated leptons from t->W decays"),
@@ -171,12 +172,78 @@ btag_weights["bTagWeight"] = NTupleVariable("bTagWeight",
 treeProducer.globalVariables += list(btag_weights.values())
 
 # Lepton Analyzer, take its default config and fix loose iso consistent with tight definition
+  #removed
 from PhysicsTools.Heppy.analyzers.objects.LeptonAnalyzer import LeptonAnalyzer
 LepAna = LeptonAnalyzer.defaultConfig
 LepAna.mu_isoCorr  = "deltaBeta"
 LepAna.loose_muon_isoCut = lambda muon : muon.relIso04 < 0.4 
 LepAna.ele_isoCorr = "rhoArea"
 LepAna.loose_electron_isoCut = lambda electron : electron.relIso03 < 0.4 
+
+#added
+#from PhysicsTools.Heppy.analyzers.objects.LeptonAnalyzer import LeptonAnalyzer
+#LepAna = cfg.Analyzer(
+#      LeptonAnalyzer, name="leptonAnalyzer",
+#      # input collections
+#      muons='slimmedMuons',
+#      electrons='slimmedElectrons',
+#      rhoMuon= 'fixedGridRhoFastjetAll',
+#      rhoElectron = 'fixedGridRhoFastjetAll',
+#      # energy scale corrections and ghost muon suppression (off by default)
+#      doMuonScaleCorrections=False,
+#      doElectronScaleCorrections=False, # "embedded" in 5.18 for regression
+#      doSegmentBasedMuonCleaning=False,
+#      # inclusive very loose muon selection
+#      inclusive_muon_id  = "POG_ID_Loose",
+#      inclusive_muon_pt  = 3,
+#      inclusive_muon_eta = 2.4,
+#      inclusive_muon_dxy = 1000,
+#      inclusive_muon_dz  = 1000,
+#      muon_dxydz_track = "innerTrack",
+#      # veto muon selection
+#      loose_muon_id     = "POG_ID_Loose",
+#      loose_muon_pt     = 10,
+#      loose_muon_eta    = 2.4,
+#      loose_muon_dxy    = 1000,
+#      loose_muon_dz     = 1000,
+#      loose_muon_isoCut = (lambda mu : ( mu.relIso04 <= 0.4)), # this is not to apply loose_muon_relIso which is on DR=0.3
+#      loose_muon_relIso = 0.4,
+#      # inclusive very loose electron selection
+#      inclusive_electron_id  = "",
+#      inclusive_electron_pt  = 5,
+#      inclusive_electron_eta = 2.5,
+#      inclusive_electron_dxy = 0.5,
+#      inclusive_electron_dz  = 1.0,
+#      inclusive_electron_lostHits = 5.0,
+#      # veto electron selection
+#      loose_electron_id     = "POG_Cuts_ID_SPRING15_25ns_v1_ConvVetoDxyDz_Veto_full5x5",
+#      loose_electron_pt     = 10,
+#      loose_electron_eta    = 2.5,
+#      loose_electron_dxy    = 0.5,
+#      loose_electron_dz     = 1.0,
+#      loose_electron_relIso = 1.0,
+#      loose_electron_lostHits = 5.0,
+#      # muon isolation correction method (can be "rhoArea" or "deltaBeta")
+#      mu_isoCorr = "deltaBeta" ,
+#      mu_effectiveAreas = "Spring15_25ns_v1", #(can be 'Data2012' or 'Phys14_25ns_v1' or 'Spring15_25ns_v1')
+#      # electron isolation correction method (can be "rhoArea" or "deltaBeta")
+#      ele_isoCorr = "rhoArea" ,
+#      ele_effectiveAreas = "Spring15_25ns_v1" , #(can be 'Data2012' or 'Phys14_25ns_v1' or 'Spring15_25ns_v1' or 'Spring15_50ns_v1')
+#      ele_tightId = "Cuts_2012" ,
+#      # Mini-isolation, with pT dependent cone: will fill in the miniRelIso, miniRelIsoCharged, miniRelIsoNeutral variables of the leptons (see https://indico.cern.ch/event/368826/ )
+#      doMiniIsolation = False, # off by default since it requires access to all PFCandidates 
+#      packedCandidates = 'packedPFCandidates',
+#      miniIsolationPUCorr = 'rhoArea', # Allowed options: 'rhoArea' (EAs for 03 cone scaled by R^2), 'deltaBeta', 'raw' (uncorrected), 'weights' (delta beta weights; not validated)
+#      miniIsolationVetoLeptons = None, # use 'inclusive' to veto inclusive leptons and their footprint in all isolation cones
+#      # minimum deltaR between a loose electron and a loose muon (on overlaps, discard the electron)
+#      min_dr_electron_muon = 0.05,
+#      # do MC matching 
+#      do_mc_match = True, # note: it will in any case try it only on MC, not on data
+#      match_inclusiveLeptons = False, # match to all inclusive leptons
+#      do_mc_match_photons = False, # do not do MC matching of electrons to photons
+#)
+
+
 
 from PhysicsTools.Heppy.analyzers.objects.VertexAnalyzer import VertexAnalyzer
 VertexAna = VertexAnalyzer.defaultConfig
@@ -255,7 +322,7 @@ JetAna.doQG=False
 JetAna.QGpath=os.environ['CMSSW_BASE']+"/src/PhysicsTools/Heppy/data/pdfQG_AK4chs_13TeV_v2b.root"
 JetAna.recalibrateJets=True
 JetAna.jecPath=os.environ['CMSSW_BASE']+"/src/HighMassVHbbAnalysis/Heppy/data/jec"
-JetAna.mcGT="74X_mcRun2_asymptotic_v2"
+JetAna.mcGT="74X_mcRun2_asymptotic_v4"
 JetAna.dataGT = "Summer15_25nsV6_DATA"
 JetAna.addJECShifts=True
 JetAna.addJERShifts=True
@@ -370,7 +437,7 @@ from PhysicsTools.Heppy.analyzers.core.JSONAnalyzer import JSONAnalyzer
 jsonAna = cfg.Analyzer(JSONAnalyzer,
       passAll=True
       )
-
+#jsonAna.json= "json.txt"
 #sequence = [jsonAna,LHEAna,FlagsAna, hbheAna, GenAna,VHGenAna,PUAna,TrigAna,VertexAna,LepAna,PhoAna,TauAna,JetAna,METAna, METPuppiAna, METNoHFAna, PdfAna, VHbb,TTHtoTauTau,TTHtoTauTauGen,treeProducer]#,sh]
 
 sequence = [jsonAna,LHEAna,FlagsAna, hbheAna, GenAna,VHGenAna,PUAna,TrigAna,VertexAna,LepAna,PhoAna,TauAna,JetAna,METAna, METPuppiAna, METNoHFAna, PdfAna, HighMassVHbb , treeProducer]#,sh]
@@ -379,7 +446,9 @@ sequence = [jsonAna,LHEAna,FlagsAna, hbheAna, GenAna,VHGenAna,PUAna,TrigAna,Vert
 from PhysicsTools.Heppy.utils.miniAodFiles import miniAodFiles
 sample = cfg.MCComponent(
     files = [
-    "root://xrootd.unl.edu//store/mc/RunIISpring15MiniAODv2/WprimeToWhToWlephbb_narrow_M-1200_13TeV-madgraph/MINIAODSIM/Asympt50ns_74X_mcRun2_asymptotic50ns_v0-v1/30000/6248D38C-8D76-E511-B243-20CF305B058C.root"
+    #"root://xrootd.unl.edu//store/mc/RunIISpring15MiniAODv2/WprimeToWhToWlephbb_narrow_M-4000_13TeV-madgraph/MINIAODSIM/74X_mcRun2_asymptotic_v2-v1/60000/E4EB03F2-4170-E511-B5C4-00259073E466.root"
+    "root://xrootd.unl.edu//store/mc/RunIISpring15MiniAODv2/WprimeToMuNu_M-3000_TuneCUETP8M1_13TeV-pythia8/MINIAODSIM/74X_mcRun2_asymptotic_v2-v1/60000/10EFFE5D-4374-E511-905E-003048F0113E.root"
+    #"root://xrootd.unl.edu//store/mc/RunIISpring15MiniAODv2/WprimeToWhToWlephbb_narrow_M-1200_13TeV-madgraph/MINIAODSIM/Asympt50ns_74X_mcRun2_asymptotic50ns_v0-v1/30000/6248D38C-8D76-E511-B243-20CF305B058C.root"
 #'file:68790C43-4971-E511-AFD7-782BCB20E307.root'
 #		"root://cms-xrd-global.cern.ch//store/mc/RunIISpring15MiniAODv2/DYJetsToLL_M-50_HT-100to200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/74X_mcRun2_asymptotic_v2-v1/50000/009AE141-CA6D-E511-A060-002590A3716C.root"
 
@@ -397,7 +466,6 @@ sample = cfg.MCComponent(
     splitFactor = 5
     )
 sample.isMC=True
-
 
 # the following is declared in case this cfg is used in input to the heppy.py script
 selectedComponents = [sample]

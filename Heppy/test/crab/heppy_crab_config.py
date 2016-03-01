@@ -38,7 +38,7 @@ config.Data.inputDBS = 'global'
 config.Data.splitting = 'FileBased'
 config.Data.unitsPerJob = 1
 config.Data.totalUnits = 100
-config.Data.outLFNDirBase = '/store/group/cmst3/user/degrutto/WprimeHBBHeppyD14_TEST/'
+#config.Data.outLFNDirBase = '/store/group/cmst3/user/degrutto/WprimeHBBHeppyD14_TEST/'
 config.Data.publication = True
 config.Data.outputDatasetTag = 'HBB_HEPPY_D14'
 

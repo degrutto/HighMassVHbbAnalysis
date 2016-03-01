@@ -1,4 +1,13 @@
 triggerTable = {
+    "HLT_Mu45_eta2p1" : [
+      "HLT_Mu45_eta2p1_v*",
+    ],
+    "HLT_Mu50" : [
+      "HLT_Mu50_v*",
+    ],
+    "HLT_Ele115_CaloIdVT_GsfTrkIdT" : [
+      "HLT_Ele115_CaloIdVT_GsfTrkIdT_v*",
+    ],
     "ZnnHbbAll" : [
         "HLT_CaloMHTNoPU90_PFMET90_PFMHT90_IDLoose_BTagCSV0p7_v*",
         "HLT_CaloMHTNoPU90_PFMET90_PFMHT90_IDLoose_v*",

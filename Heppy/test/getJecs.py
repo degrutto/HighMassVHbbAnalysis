@@ -13,7 +13,7 @@ process.readjets    = cms.EDAnalyzer('JetCorrectorDBReader',
       payloadName    = cms.untracked.string('AK4PFchs'),
       # this is used ONLY for the name of the printed txt files. You can use any name that you like, 
       # but it is recommended to use the GT name that you retrieved the files from.
-      globalTag      = cms.untracked.string('74X_dataRun2_reMiniAOD_v0'),  
+      globalTag      = cms.untracked.string('74X_mcRun2_asymptotic_v4'),  
       printScreen    = cms.untracked.bool(False),
       createTextFile = cms.untracked.bool(True)
 )
